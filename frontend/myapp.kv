@@ -1,0 +1,227 @@
+<LoginScreen>:
+    name: "login"
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [20, 50, 20, 50]  
+        spacing: 20
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 1  
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Iniciar Sesión"
+            font_size: '24sp'
+            bold: True
+            color: 0.2, 0.4, 0.6, 1
+            size_hint_y: None
+            height: "50dp"
+
+        TextInput:
+            id: email_input
+            hint_text: "Correo electrónico"
+            multiline: False
+            size_hint_y: None
+            height: "48dp"
+            font_size: '18sp'
+            padding: [10, 10]
+
+        TextInput:
+            id: password_input
+            hint_text: "Contraseña"
+            multiline: False
+            password: True
+            size_hint_y: None
+            height: "48dp"
+            font_size: '18sp'
+            padding: [10, 10]
+        
+        Button:
+            text: "Iniciar sesión"
+            size_hint_y: None
+            height: "50dp"
+            background_color: 0.2, 0.6, 0.4, 1
+            font_size: '18sp'
+            on_press: root.login()
+
+        Label:
+            id: error_label
+            text: ""
+            color: 1, 0, 0, 1
+            font_size: '16sp'
+            halign: "center"
+            valign: "middle"
+            size_hint_y: None
+            height: "30dp"
+        
+        Button:
+            text: "Registrarse"
+            size_hint_y: None
+            height: "50dp"
+            background_color: 0.6, 0.4, 0.2, 1
+            font_size: '18sp'
+            on_press: root.go_to_register()
+
+<RegisterScreen>:
+    name: "register"
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [20, 50, 20, 50]
+        spacing: 20
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 1  
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Registro"
+            font_size: '24sp'
+            bold: True
+            color: 0.2, 0.4, 0.6, 1
+            size_hint_y: None
+            height: "50dp"
+
+        TextInput:
+            id: register_name_input
+            hint_text: "Nombre"
+            multiline: False
+            size_hint_y: None
+            height: "48dp"
+            font_size: '18sp'
+            padding: [10, 10]
+
+        TextInput:
+            id: register_email_input
+            hint_text: "Correo electrónico"
+            multiline: False
+            size_hint_y: None
+            height: "48dp"
+            font_size: '18sp'
+            padding: [10, 10]
+
+        TextInput:
+            id: register_password_input
+            hint_text: "Contraseña"
+            multiline: False
+            password: True
+            size_hint_y: None
+            height: "48dp"
+            font_size: '18sp'
+            padding: [10, 10]
+
+        Button:
+            text: "Registrarse"
+            size_hint_y: None
+            height: "50dp"
+            background_color: 0.2, 0.6, 0.4, 1
+            font_size: '18sp'
+            on_press: root.register()
+
+        Label:
+            id: register_error_label
+            text: ""
+            color: 1, 0, 0, 1
+            font_size: '16sp'
+            halign: "center"
+            valign: "middle"
+            size_hint_y: None
+            height: "30dp"
+        
+        Button:
+            text: "Volver a Inicio"
+            size_hint_y: None
+            height: "50dp"
+            background_color: 0.6, 0.4, 0.2, 1
+            font_size: '18sp'
+            on_press: root.go_to_login()
+
+<DashboardScreen>:
+    name: "dashboard"
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 20, 10, 20]
+        spacing: 15
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 0.95, 1 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Mis Turnos"
+            font_size: '24sp'
+            bold: True
+            color: 0.2, 0.4, 0.6, 1
+            size_hint_y: None
+            height: "50dp"
+
+        ScrollView:
+            size_hint: 1, 0.5
+            BoxLayout:
+                id: turnos_container
+                orientation: 'vertical'
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: None
+            height: "220dp"
+
+            TextInput:
+                id: vehiculo_input
+                hint_text: "Vehículo"
+                multiline: False
+                size_hint_y: None
+                height: "48dp"
+                font_size: '18sp'
+
+            TextInput:
+                id: matricula_input
+                hint_text: "Matrícula"
+                multiline: False
+                size_hint_y: None
+                height: "48dp"
+                font_size: '18sp'
+
+            TextInput:
+                id: fecha_turno_input
+                hint_text: "Fecha (YYYY-MM-DD HH:MM:SS)"
+                multiline: False
+                size_hint_y: None
+                height: "48dp"
+                font_size: '18sp'
+
+            Button:
+                text: "Reservar Turno"
+                size_hint_y: None
+                height: "50dp"
+                background_color: 0.2, 0.6, 0.4, 1
+                font_size: '18sp'
+                on_press: root.reservar_turno(root.manager.user_id)
+
+        Label:
+            id: dashboard_error_label
+            text: ""
+            color: 1, 0, 0, 1
+            font_size: '16sp'
+            size_hint_y: None
+            height: "30dp"
+
+        Button:
+            text: "Cerrar sesión"
+            size_hint_y: None
+            height: "50dp"
+            background_color: 0.8, 0.2, 0.2, 1
+            font_size: '18sp'
+            on_press: root.logout()
